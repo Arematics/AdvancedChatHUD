@@ -183,6 +183,11 @@ public class WindowManager implements IRenderer, ResolutionEventHandler {
         windows.removeIf(w -> w == window);
         windows.add(0, window);
 
+        // Execute switch command if it's a CustomChatTab
+        if (window.getTab() instanceof CustomChatTab customTab) {
+            customTab.executeSwitchCommand();
+        }
+
         if (!HudConfigStorage.General.CHANGE_START_MESSAGE.config.getBooleanValue() || !(client.currentScreen instanceof AdvancedChatScreen screen)) {
             return;
         }

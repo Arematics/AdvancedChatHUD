@@ -20,6 +20,7 @@ import io.github.darkkronicle.advancedchathud.config.ChatTab;
 import io.github.darkkronicle.advancedchathud.config.Match;
 import lombok.Getter;
 import lombok.Setter;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -37,6 +38,10 @@ public class CustomChatTab extends AbstractChatTab {
     @Getter
     @Setter
     private String startingMessage;
+
+    @Getter
+    @Setter
+    private String switchCommand;
 
     @Getter
     @Setter
@@ -59,6 +64,7 @@ public class CustomChatTab extends AbstractChatTab {
         this.matches = new ArrayList<>(tab.getMatches());
         this.forward = tab.getForward().config.getBooleanValue();
         this.startingMessage = tab.getStartingMessage().config.getStringValue();
+        this.switchCommand = tab.getSwitchCommand().config.getStringValue();
         setDefaultFunction();
     }
 
@@ -104,5 +110,18 @@ public class CustomChatTab extends AbstractChatTab {
             }
         }, new LiteralNode(search)));
         return result.getContent().getBoolean();
+    }
+
+    /**
+     * Executes the switch command if one is configured.
+     */
+    public void executeSwitchCommand() {
+        if (switchCommand != null && !switchCommand.trim().isEmpty()) {
+            MinecraftClient client = MinecraftClient.getInstance();
+            if (client.player != null) {
+                // Execute the command as if the player typed it
+                client.player.networkHandler.sendChatCommand(switchCommand.trim());
+            }
+        }
     }
 }

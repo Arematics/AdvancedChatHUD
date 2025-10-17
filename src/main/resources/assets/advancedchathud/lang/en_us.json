@@ -121,6 +121,8 @@
   "advancedchathud.config.tab.info.innercolor": "The color of the §6background§r of the §bchat tab",
   "advancedchathud.config.tab.showunread": "Show Unread Messages",
   "advancedchathud.config.tab.info.showunread": "Whether or not the number of §6unread messages§r are displayed for the §bchat tab§r",
+  "advancedchathud.config.tab.switchcommand": "Switch Command",
+  "advancedchathud.config.tab.info.switchcommand": "A command that will be executed when switching to this tab. Leave empty to disable.",
 
   "advancedchathud.windowconfig.x": "Window X",
   "advancedchathud.windowconfig.info.x": "The X value for the window",

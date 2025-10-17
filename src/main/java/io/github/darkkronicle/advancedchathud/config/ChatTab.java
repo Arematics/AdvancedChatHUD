@@ -104,6 +104,12 @@ public class ChatTab {
                     new ConfigBoolean(
                             translate("showunread"), false, translate("info.showunread")));
 
+    private SaveableConfig<ConfigString> switchCommand =
+            SaveableConfig.fromConfig(
+                    "switchCommand",
+                    new ConfigString(
+                            translate("switchcommand"), "", translate("info.switchcommand")));
+
     private final ImmutableList<SaveableConfig<?>> options =
             ImmutableList.of(
                     name,
@@ -114,7 +120,8 @@ public class ChatTab {
                     mainColor,
                     borderColor,
                     innerColor,
-                    showUnread);
+                    showUnread,
+                    switchCommand);
 
     /** Options that the main tab can use */
     private final ImmutableList<SaveableConfig<?>> mainEditableOptions =
@@ -126,7 +133,8 @@ public class ChatTab {
                     mainColor,
                     borderColor,
                     innerColor,
-                    showUnread);
+                    showUnread,
+                    switchCommand);
 
     public FindType getFind() {
         return matches.get(0).getFindType();
